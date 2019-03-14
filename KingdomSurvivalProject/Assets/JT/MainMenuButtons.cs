@@ -25,7 +25,6 @@ public class MainMenuButtons : MonoBehaviour
     public void NewGame()
     {
         Time.timeScale = 1;
-        GetComponent<AudioSource>().Play();
         SceneManager.LoadScene(1);
     }
     public void Continue()

@@ -12,6 +12,9 @@ public class Pause : MonoBehaviour
     [SerializeField]
     private GameObject PauseMenuConfirm;
     public bool paused = false;
+    [SerializeField]
+    public GameObject PauseMenuSound;
+    public GameObject HUDSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,12 +43,17 @@ public class Pause : MonoBehaviour
             HudGameObject.GetComponent<Canvas>().enabled = true;
             paused = false;
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            HUDSound.GetComponent<AudioSource>().Play();
+        }
     }
     public void Resume()
     {
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        PauseMenuSound.GetComponent<AudioSource>().Play();
         PauseMenuObject.GetComponent<Canvas>().enabled = false;
         PauseMenuConfirm.GetComponent<Canvas>().enabled = false;
         HudGameObject.GetComponent<Canvas>().enabled = true;
@@ -53,6 +61,7 @@ public class Pause : MonoBehaviour
     }
     public void ExitToMainMenu()
     {
+        PauseMenuSound.GetComponent<AudioSource>().Play();
         HudGameObject.GetComponent<Canvas>().enabled = false;
         PauseMenuObject.GetComponent<Canvas>().enabled = false;
         PauseMenuConfirm.GetComponent<Canvas>().enabled = true;
@@ -65,6 +74,7 @@ public class Pause : MonoBehaviour
     }
     public void PauseConfirmNo()
     {
+        PauseMenuSound.GetComponent<AudioSource>().Play();
         PauseMenuConfirm.GetComponent<Canvas>().enabled = false;
         PauseMenuObject.GetComponent<Canvas>().enabled = true;
     }
